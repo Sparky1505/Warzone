@@ -1,0 +1,12 @@
+
+[Continents]
+conti1=4
+conti2=5
+
+[Territories]
+country1,dummy1,dummy2,conti1,country2,country3,country4,country5,country6
+country2,dummy1,dummy2,conti1,country1,country2,country3,country4,country5,country6
+country3,dummy1,dummy2,conti1,country1,country2,country3,country4,country5,country6
+country4,dummy1,dummy2,conti2,country1,country2,country3,country4,country5,country6
+country5,dummy1,dummy2,conti2,country1,country2,country3,country4,country6
+country6,dummy1,dummy2,conti2,country1,country2,country3,country4,country5

@@ -1,0 +1,693 @@
+Initializing the Game ......
+
+
+-------Game Startup Phase-------
+
+
+Input Command: loadgame maingame.txt
+Log: Map has been loaded to play the game.
+Log: Country/Continent Assignment:
+ Player : J is assigned with country : Kidrar
+ Player : J is assigned with country : Hundra
+ Player : K is assigned with country : Loner
+ Player : K is assigned with country : Kimber
+ Player : L is assigned with country : Jindre
+ Player : L is assigned with country : Opering
+Log: Player : J has been assigned with 3 armies
+Log: Player : K has been assigned with 3 armies
+Log: Player : L has been assigned with 3 armies
+
+Issued Order: (Player: J) deploy Kidrar 2
+
+Input Command: deploy Kidrar 2
+Log: Deploy order has been added to queue for execution. For player: J
+Log: Cheater Player: K assigned 3 armies to  Kimber
+Log: Cheater Player: K Now owns Hundra
+Log: Cheater Player: K Now owns Kidrar
+Log: Cheater Player: K Now owns Opering
+Log: Cheater Player: K Now owns Jindre
+
+-------Order Execution Phase-------
+
+
+Starting Execution Of Orders.....
+Log: 
+---------- Deploy order issued by player J ----------
+
+Deploy 2 armies to Kidrar
+Log: Deploy Order = deploy Kidrar 2 is not executed since Target country: Kidrar given in deploy command does not belongs to the player : J
+Player : K has won the Game by conquering all countries. Exiting the Game .....
+Log: 
+Game Completed on map : debrew .........
+
+Log: 
+Starting New Game on map : onetrial .........
+
+Log: Country/Continent Assignment:
+ Player : J is assigned with country : Kidrar
+ Player : J is assigned with country : Hundra
+ Player : K is assigned with country : Loner
+ Player : K is assigned with country : Kimber
+ Player : L is assigned with country : Jindre
+ Player : L is assigned with country : Opering
+ Player : J is assigned with country : country3
+ Player : J is assigned with country : country1
+ Player : K is assigned with country : country2
+ Player : K is assigned with country : country5
+ Player : L is assigned with country : country4
+ Player : L is assigned with country : country6
+Log: Player : J has been assigned with 3 armies
+Log: Player : K has been assigned with 3 armies
+Log: Player : L has been assigned with 3 armies
+
+-------Issue Order Phase-------
+
+
+Issued Order: (Player: J) deploy country3 1
+
+Input Command: deploy country3 1
+Log: Deploy order has been added to queue for execution. For player: J
+Log: Cheater Player: K assigned 3 armies to  country2
+Log: Cheater Player: K Now owns country1
+Log: Cheater Player: K Now owns country3
+Log: Cheater Player: K Now owns country4
+Log: Cheater Player: K Now owns country6
+
+-------Order Execution Phase-------
+
+
+Starting Execution Of Orders.....
+Log: 
+---------- Deploy order issued by player J ----------
+
+Deploy 1 armies to country3
+Log: Deploy Order = deploy country3 1 is not executed since Target country: country3 given in deploy command does not belongs to the player : J
+Player : K has won the Game by conquering all countries. Exiting the Game .....
+Log: 
+Game Completed on map : onetrial .........
+
+Log: 
+Starting New Game on map : debrew .........
+
+Log: Country/Continent Assignment:
+ Player : J is assigned with country : Kidrar
+ Player : J is assigned with country : Hundra
+ Player : K is assigned with country : Loner
+ Player : K is assigned with country : Kimber
+ Player : L is assigned with country : Jindre
+ Player : L is assigned with country : Opering
+ Player : J is assigned with country : country3
+ Player : J is assigned with country : country1
+ Player : K is assigned with country : country2
+ Player : K is assigned with country : country5
+ Player : L is assigned with country : country4
+ Player : L is assigned with country : country6
+ Player : J is assigned with country : Jindre
+ Player : J is assigned with country : Hundra
+ Player : K is assigned with country : Loner
+ Player : K is assigned with country : Kidrar
+ Player : L is assigned with country : Opering
+ Player : L is assigned with country : Kimber
+Log: Player : J has been assigned with 3 armies
+Log: Player : K has been assigned with 3 armies
+Log: Player : L has been assigned with 3 armies
+
+-------Issue Order Phase-------
+
+
+Issued Order: (Player: J) deploy Jindre 2
+
+Input Command: deploy Jindre 2
+Log: Deploy order has been added to queue for execution. For player: J
+Log: Cheater Player: K assigned 1 armies to  Kidrar
+Log: Cheater Player: K assigned 2 armies to  Loner
+Log: Cheater Player: K Now owns Hundra
+Log: Cheater Player: K Now owns Opering
+Log: Cheater Player: K Now owns Jindre
+Log: Cheater Player: K Now owns Kimber
+
+-------Order Execution Phase-------
+
+
+Starting Execution Of Orders.....
+Log: 
+---------- Deploy order issued by player J ----------
+
+Deploy 2 armies to Jindre
+Log: Deploy Order = deploy Jindre 2 is not executed since Target country: Jindre given in deploy command does not belongs to the player : J
+Player : K has won the Game by conquering all countries. Exiting the Game .....
+Log: 
+Game Completed on map : debrew .........
+
+Log: 
+Starting New Game on map : onetrial .........
+
+Log: Country/Continent Assignment:
+ Player : J is assigned with country : Kidrar
+ Player : J is assigned with country : Hundra
+ Player : K is assigned with country : Loner
+ Player : K is assigned with country : Kimber
+ Player : L is assigned with country : Jindre
+ Player : L is assigned with country : Opering
+ Player : J is assigned with country : country3
+ Player : J is assigned with country : country1
+ Player : K is assigned with country : country2
+ Player : K is assigned with country : country5
+ Player : L is assigned with country : country4
+ Player : L is assigned with country : country6
+ Player : J is assigned with country : Jindre
+ Player : J is assigned with country : Hundra
+ Player : K is assigned with country : Loner
+ Player : K is assigned with country : Kidrar
+ Player : L is assigned with country : Opering
+ Player : L is assigned with country : Kimber
+ Player : J is assigned with country : country3
+ Player : J is assigned with country : country5
+ Player : K is assigned with country : country6
+ Player : K is assigned with country : country2
+ Player : L is assigned with country : country4
+ Player : L is assigned with country : country1
+Log: Player : J has been assigned with 3 armies
+Log: Player : K has been assigned with 3 armies
+Log: Player : L has been assigned with 3 armies
+
+-------Issue Order Phase-------
+
+
+Issued Order: (Player: J) deploy country3 1
+
+Input Command: deploy country3 1
+Log: Deploy order has been added to queue for execution. For player: J
+Log: Cheater Player: K assigned 3 armies to  country6
+Log: Cheater Player: K Now owns country1
+Log: Cheater Player: K Now owns country3
+Log: Cheater Player: K Now owns country4
+Log: Cheater Player: K Now owns country5
+
+-------Order Execution Phase-------
+
+
+Starting Execution Of Orders.....
+Log: 
+---------- Deploy order issued by player J ----------
+
+Deploy 1 armies to country3
+Log: Deploy Order = deploy country3 1 is not executed since Target country: country3 given in deploy command does not belongs to the player : J
+Player : K has won the Game by conquering all countries. Exiting the Game .....
+Log: 
+Game Completed on map : onetrial .........
+
+Log: 
+Starting New Game on map : debrew .........
+
+Log: Country/Continent Assignment:
+ Player : J is assigned with country : Kidrar
+ Player : J is assigned with country : Hundra
+ Player : K is assigned with country : Loner
+ Player : K is assigned with country : Kimber
+ Player : L is assigned with country : Jindre
+ Player : L is assigned with country : Opering
+ Player : J is assigned with country : country3
+ Player : J is assigned with country : country1
+ Player : K is assigned with country : country2
+ Player : K is assigned with country : country5
+ Player : L is assigned with country : country4
+ Player : L is assigned with country : country6
+ Player : J is assigned with country : Jindre
+ Player : J is assigned with country : Hundra
+ Player : K is assigned with country : Loner
+ Player : K is assigned with country : Kidrar
+ Player : L is assigned with country : Opering
+ Player : L is assigned with country : Kimber
+ Player : J is assigned with country : country3
+ Player : J is assigned with country : country5
+ Player : K is assigned with country : country6
+ Player : K is assigned with country : country2
+ Player : L is assigned with country : country4
+ Player : L is assigned with country : country1
+ Player : J is assigned with country : Kimber
+ Player : J is assigned with country : Kidrar
+ Player : K is assigned with country : Jindre
+ Player : K is assigned with country : Loner
+ Player : L is assigned with country : Hundra
+ Player : L is assigned with country : Opering
+Log: Player : J has been assigned with 3 armies
+Log: Player : K has been assigned with 3 armies
+Log: Player : L has been assigned with 3 armies
+
+-------Issue Order Phase-------
+
+
+Issued Order: (Player: J) deploy Kimber 2
+
+Input Command: deploy Kimber 2
+Log: Deploy order has been added to queue for execution. For player: J
+Log: Cheater Player: K assigned 1 armies to  Jindre
+Log: Cheater Player: K assigned 1 armies to  Jindre
+Log: Cheater Player: K assigned 1 armies to  Loner
+Log: Cheater Player: K Now owns Opering
+Log: Cheater Player: K Now owns Hundra
+Log: Cheater Player: K Now owns Kidrar
+Log: Cheater Player: K Now owns Kimber
+
+-------Order Execution Phase-------
+
+
+Starting Execution Of Orders.....
+Log: 
+---------- Deploy order issued by player J ----------
+
+Deploy 2 armies to Kimber
+Log: Deploy Order = deploy Kimber 2 is not executed since Target country: Kimber given in deploy command does not belongs to the player : J
+Player : K has won the Game by conquering all countries. Exiting the Game .....
+Log: 
+Game Completed on map : debrew .........
+
+Log: 
+Starting New Game on map : onetrial .........
+
+Log: Country/Continent Assignment:
+ Player : J is assigned with country : Kidrar
+ Player : J is assigned with country : Hundra
+ Player : K is assigned with country : Loner
+ Player : K is assigned with country : Kimber
+ Player : L is assigned with country : Jindre
+ Player : L is assigned with country : Opering
+ Player : J is assigned with country : country3
+ Player : J is assigned with country : country1
+ Player : K is assigned with country : country2
+ Player : K is assigned with country : country5
+ Player : L is assigned with country : country4
+ Player : L is assigned with country : country6
+ Player : J is assigned with country : Jindre
+ Player : J is assigned with country : Hundra
+ Player : K is assigned with country : Loner
+ Player : K is assigned with country : Kidrar
+ Player : L is assigned with country : Opering
+ Player : L is assigned with country : Kimber
+ Player : J is assigned with country : country3
+ Player : J is assigned with country : country5
+ Player : K is assigned with country : country6
+ Player : K is assigned with country : country2
+ Player : L is assigned with country : country4
+ Player : L is assigned with country : country1
+ Player : J is assigned with country : Kimber
+ Player : J is assigned with country : Kidrar
+ Player : K is assigned with country : Jindre
+ Player : K is assigned with country : Loner
+ Player : L is assigned with country : Hundra
+ Player : L is assigned with country : Opering
+ Player : J is assigned with country : country5
+ Player : J is assigned with country : country1
+ Player : K is assigned with country : country4
+ Player : K is assigned with country : country2
+ Player : L is assigned with country : country6
+ Player : L is assigned with country : country3
+Log: Player : J has been assigned with 3 armies
+Log: Player : K has been assigned with 3 armies
+Log: Player : L has been assigned with 3 armies
+
+-------Issue Order Phase-------
+
+
+Issued Order: (Player: J) deploy country5 1
+
+Input Command: deploy country5 1
+Log: Deploy order has been added to queue for execution. For player: J
+Log: Cheater Player: K assigned 3 armies to  country2
+Log: Cheater Player: K Now owns country1
+Log: Cheater Player: K Now owns country3
+Log: Cheater Player: K Now owns country5
+Log: Cheater Player: K Now owns country6
+
+-------Order Execution Phase-------
+
+
+Starting Execution Of Orders.....
+Log: 
+---------- Deploy order issued by player J ----------
+
+Deploy 1 armies to country5
+Log: Deploy Order = deploy country5 1 is not executed since Target country: country5 given in deploy command does not belongs to the player : J
+Player : K has won the Game by conquering all countries. Exiting the Game .....
+Log: 
+Game Completed on map : onetrial .........
+
+Log: ************ Tournament Completed ************
+
+Input Command: savegame game3.txt
+Log: Country China added successfully!
+Log: Authenticating Map......
+Log: East_Europe has no countries, it must possess atleast 1 country
+Log: Couldn't save the changes in map file
+Log: Continent Asia removed successfully!
+Log: testedit The File already exists and is loaded for editing
+Log: Continent cannot be added! It already exists!
+Log: Country Maldives added successfully!
+Log: Country Singapore added successfully!
+Log: Neighbour Pair Singapore Maldives added successfully!
+Log: No Such Neighbor Exists
+Log: Continent Asia added successfully!
+Log: Country:  Ukraine does not exist!
+Log: test The File already exists and is loaded for editing
+Log: Continent Northern-America added successfully!
+Log: Country Canada added successfully!
+Log: Country Alaska added successfully!
+Log: Neighbour Pair Canada Alaska added successfully!
+Log: 10 armies have been successfully deployed on the Country : India
+Log: 15 armies have been successfully deployed on the Country : Canada
+Log: Negotiation with Gayle approached by ABD successful!
+Log: Negotiation with Gayle approached by ABD successful!
+Log: Bomb card order : bomb France is not executed as Gayle has negotiation pact with the target country's player!
+
+Input Command: editcontinent
+Log: Can not Edit Continent, please perform `editmap` first
+
+Input Command: loadgame NoGame.txt
+
+Input Command: savemap
+Log: No map found to save, Please `editmap` first
+
+Input Command: savegame TestGameLog.txt
+Log: Game Saved Successfully to TestGameLog.txt
+
+Input Command: editmap
+
+Input Command: assigncountries add india
+
+Input Command: editcontinent -add Europe 10 -add America 20
+Log: Continent Europe added successfully!
+Log: Continent America added successfully!
+
+Input Command: editcontinent -remove Europe
+Log: Continent Europe removed successfully!
+Player : Vini has won the Game by conquering all countries. Exiting the Game .....
+Log: 10 armies have been successfully deployed on the Country : India
+Log: 15 armies have been successfully deployed on the Country : Canada
+Log: Country/Continent Assignment:
+ Player : Vinisha is assigned with country : Ontario-North
+ Player : Vinisha is assigned with country : N&L-Labrador
+ Player : Vinisha is assigned with country : British_Columbia-South
+ Player : Vinisha is assigned with country : NT-Banks_Island
+ Player : Vinisha is assigned with country : NU-Southern_Islands
+ Player : Vinisha is assigned with country : Saskatchewan-South
+ Player : Vinisha is assigned with country : Nunavut-Continental
+ Player : Vinisha is assigned with country : Manitoba-South
+ Player : Vinisha is assigned with country : BC-Vancouver_Island
+ Player : Vinisha is assigned with country : NU-Ellesmere_Island
+ Player : Vinisha is assigned with country : Alberta-South
+ Player : Vinisha is assigned with country : Ontario-South
+ Player : Vinisha is assigned with country : Northwest_Territories-Continental
+ Player : Vinisha is assigned with country : Nova_Scotia
+ Player : Vinisha is assigned with country : Prince_Edward_Island
+ Player : Nidhi is assigned with country : NT-Northern_Islands
+ Player : Nidhi is assigned with country : Saskatchewan-North
+ Player : Nidhi is assigned with country : NU-Victoria_Island-East
+ Player : Nidhi is assigned with country : Manitoba-North
+ Player : Nidhi is assigned with country : British_Columbia-North
+ Player : Nidhi is assigned with country : Quebec-South
+ Player : Nidhi is assigned with country : Alberta-North
+ Player : Nidhi is assigned with country : NT-Victoria_Island-West
+ Player : Nidhi is assigned with country : N&L-Newfoundland
+ Player : Nidhi is assigned with country : Quebec-North
+ Player : Nidhi is assigned with country : Ontario-West
+ Player : Nidhi is assigned with country : NU-Northern_Islands
+ Player : Nidhi is assigned with country : Quebec-Central
+ Player : Nidhi is assigned with country : NU-Baffin_Island
+ Player : Nidhi is assigned with country : New_Brunswick
+ Player : Vinisha is assigned with country : Yukon_Territory
+ Player : Vinisha is assigned with continent : Western_Provinces-South
+ Player : Nidhi is assigned with continent : Western_Provinces-North
+Log: Advance Order : advance India France 15 is not executed as armies given in advance order exceeds armies of source country : India
+Log: Advance Order : advance Canada France 10 is not executed as source country : Canada has 10 army units and all of those cannot be given advance order, at least one army unit has to retain the territory.
+Log: Advance Order : advance Italy France 10 is not executed since Source country : Italy given in advance command does not belongs to the player : Vinisha
+Log: Airlift Operation from France to Spain successful!
+Log: Invalid Target Country! Doesn't exist on the map!
+Log: 
+Player : Vini is executing defensive blockade on Country :  India with armies :  15
+Log: Blockade card order : blockade USA is not executed since Target country : USA given in blockade command does not owned to the player : Vini The card will have no affect and you don't get the card back.
+Log: 
+Player : Jay is executing Bomb card on country :  Japan with armies :  4. New armies: 2
+Log: 
+Player : Jay is executing Bomb card on country :  India with armies :  15. New armies: 7
+Log: 
+Player : Jay is executing Bomb card on country :  Canada with armies :  1. New armies: 0
+Log: Bomb card order : bomb Norway is not executed since Target country : Norway given in bomb command is owned by the player : Jay VALIDATES:- You cannot bomb your own territory!
+Log: Negotiation with Gayle approached by ABD successful!
+Log: Negotiation with Gayle approached by ABD successful!
+Log: Bomb card order : bomb France is not executed as Gayle has negotiation pact with the target country's player!
+Log: Cheater Player: Trent assigned 4 armies to  Spain
+Log: Cheater Player: Trent assigned 1 armies to  Spain
+Log: Cheater Player: Trent assigned 3 armies to  Spain
+Log: Cheater Player: Trent assigned 2 armies to  Spain
+Log: Cheater Player: Trent Now owns Portugal
+Log: Cheater Player: Trent Now owns France
+Log: Cheater Player: Trent assigned 7 armies to  Spain
+Log: Cheater Player: Trent assigned 1 armies to  Spain
+Log: Cheater Player: Trent assigned 1 armies to  Spain
+Log: Cheater Player: Trent assigned 1 armies to  Spain
+Log: Cheater Player: Trent Now owns Portugal
+Log: Cheater Player: Trent Now owns France
+Log: Cheater Player: Trent assigned 2 armies to  Spain
+Log: Cheater Player: Trent assigned 3 armies to  Spain
+Log: Cheater Player: Trent assigned 5 armies to  Spain
+Log: Cheater Player: Trent Now owns Portugal
+Log: Cheater Player: Trent Now owns France
+Log: Invalid Strategy passed in command. Only Aggressive, Benevolent, Random, Cheater strategies are allowed.
+Log: User entered invalid number of maps in command, Range of map :- 1<=map<=5
+Log: debrew has been loaded to start the game
+Log: canada has been loaded to start the game
+Log: Player:  Vini with strategy: Random has been added in tournament.
+Log: Player:  Shuv with strategy: Random has been added in tournament.
+Log: User entered invalid number of turns in command, Range of turns :- 10<=number of turns<=50
+Log: User entered invalid number of games in command, Range of games :- 1<=number of games<=5
+Log: Country China added successfully!
+Log: Authenticating Map......
+Log: East_Europe has no countries, it must possess atleast 1 country
+Log: Couldn't save the changes in map file
+Log: Continent Asia removed successfully!
+Log: testedit The File already exists and is loaded for editing
+Log: Continent cannot be added! It already exists!
+Log: Country Maldives added successfully!
+Log: Country Singapore added successfully!
+Log: Neighbour Pair Singapore Maldives added successfully!
+Log: No Such Neighbor Exists
+Log: Continent Asia added successfully!
+Log: Country:  Ukraine does not exist!
+Log: test The File already exists and is loaded for editing
+Log: Continent Northern-America added successfully!
+Log: Country Canada added successfully!
+Log: Country Alaska added successfully!
+Log: Neighbour Pair Canada Alaska added successfully!
+Log: 
+Player : Vini is executing defensive blockade on Country :  India with armies :  15
+Log: Blockade card order : blockade USA is not executed since Target country : USA given in blockade command does not owned to the player : Vini The card will have no affect and you don't get the card back.
+Log: Cheater Player: Trent assigned 3 armies to  Spain
+Log: Cheater Player: Trent assigned 1 armies to  Spain
+Log: Cheater Player: Trent assigned 2 armies to  Spain
+Log: Cheater Player: Trent assigned 2 armies to  Spain
+Log: Cheater Player: Trent assigned 1 armies to  Spain
+Log: Cheater Player: Trent assigned 1 armies to  Spain
+Log: Cheater Player: Trent Now owns Portugal
+Log: Cheater Player: Trent Now owns France
+Log: Cheater Player: Trent assigned 7 armies to  Spain
+Log: Cheater Player: Trent assigned 3 armies to  Spain
+Log: Cheater Player: Trent Now owns Portugal
+Log: Cheater Player: Trent Now owns France
+Log: Cheater Player: Trent assigned 5 armies to  Spain
+Log: Cheater Player: Trent assigned 1 armies to  Spain
+Log: Cheater Player: Trent assigned 2 armies to  Spain
+Log: Cheater Player: Trent assigned 2 armies to  Spain
+Log: Cheater Player: Trent Now owns Portugal
+Log: Cheater Player: Trent Now owns France
+Log: Airlift Operation from France to Spain successful!
+Log: Invalid Target Country! Doesn't exist on the map!
+Log: Country China added successfully!
+Log: Authenticating Map......
+Log: East_Europe has no countries, it must possess atleast 1 country
+Log: Couldn't save the changes in map file
+Log: Continent Asia removed successfully!
+Log: testedit The File already exists and is loaded for editing
+Log: Continent cannot be added! It already exists!
+Log: Country Maldives added successfully!
+Log: Country Singapore added successfully!
+Log: Neighbour Pair Singapore Maldives added successfully!
+Log: No Such Neighbor Exists
+Log: Continent Asia added successfully!
+Log: Country:  Ukraine does not exist!
+Log: test The File already exists and is loaded for editing
+Log: Continent Northern-America added successfully!
+Log: Country Canada added successfully!
+Log: Country Alaska added successfully!
+Log: Neighbour Pair Canada Alaska added successfully!
+Log: 10 armies have been successfully deployed on the Country : India
+Log: 15 armies have been successfully deployed on the Country : Canada
+Log: Country/Continent Assignment:
+ Player : Vinisha is assigned with country : Northwest_Territories-Continental
+ Player : Vinisha is assigned with country : Manitoba-North
+ Player : Vinisha is assigned with country : Ontario-North
+ Player : Vinisha is assigned with country : New_Brunswick
+ Player : Vinisha is assigned with country : NT-Victoria_Island-West
+ Player : Vinisha is assigned with country : Saskatchewan-South
+ Player : Vinisha is assigned with country : Quebec-South
+ Player : Vinisha is assigned with country : Saskatchewan-North
+ Player : Vinisha is assigned with country : NU-Victoria_Island-East
+ Player : Vinisha is assigned with country : Ontario-South
+ Player : Vinisha is assigned with country : British_Columbia-North
+ Player : Vinisha is assigned with country : NU-Southern_Islands
+ Player : Vinisha is assigned with country : Nova_Scotia
+ Player : Vinisha is assigned with country : Nunavut-Continental
+ Player : Vinisha is assigned with country : N&L-Newfoundland
+ Player : Nidhi is assigned with country : Alberta-North
+ Player : Nidhi is assigned with country : N&L-Labrador
+ Player : Nidhi is assigned with country : Manitoba-South
+ Player : Nidhi is assigned with country : Yukon_Territory
+ Player : Nidhi is assigned with country : Quebec-North
+ Player : Nidhi is assigned with country : NT-Northern_Islands
+ Player : Nidhi is assigned with country : NT-Banks_Island
+ Player : Nidhi is assigned with country : NU-Baffin_Island
+ Player : Nidhi is assigned with country : NU-Northern_Islands
+ Player : Nidhi is assigned with country : Prince_Edward_Island
+ Player : Nidhi is assigned with country : British_Columbia-South
+ Player : Nidhi is assigned with country : Ontario-West
+ Player : Nidhi is assigned with country : NU-Ellesmere_Island
+ Player : Nidhi is assigned with country : BC-Vancouver_Island
+ Player : Nidhi is assigned with country : Quebec-Central
+ Player : Vinisha is assigned with country : Alberta-South
+Log: Advance Order : advance India France 15 is not executed as armies given in advance order exceeds armies of source country : India
+Log: Advance Order : advance Canada France 10 is not executed as source country : Canada has 10 army units and all of those cannot be given advance order, at least one army unit has to retain the territory.
+Log: Advance Order : advance Italy France 10 is not executed since Source country : Italy given in advance command does not belongs to the player : Vinisha
+Log: Airlift Operation from France to Spain successful!
+Log: Invalid Target Country! Doesn't exist on the map!
+Log: 
+Player : Vini is executing defensive blockade on Country :  India with armies :  15
+Log: Blockade card order : blockade USA is not executed since Target country : USA given in blockade command does not owned to the player : Vini The card will have no affect and you don't get the card back.
+Log: 
+Player : Jay is executing Bomb card on country :  Japan with armies :  4. New armies: 2
+Log: 
+Player : Jay is executing Bomb card on country :  India with armies :  15. New armies: 7
+Log: 
+Player : Jay is executing Bomb card on country :  Canada with armies :  1. New armies: 0
+Log: Bomb card order : bomb Norway is not executed since Target country : Norway given in bomb command is owned by the player : Jay VALIDATES:- You cannot bomb your own territory!
+Log: Negotiation with Gayle approached by ABD successful!
+Log: Negotiation with Gayle approached by ABD successful!
+Log: Bomb card order : bomb France is not executed as Gayle has negotiation pact with the target country's player!
+Log: Cheater Player: Trent assigned 4 armies to  Spain
+Log: Cheater Player: Trent assigned 4 armies to  Spain
+Log: Cheater Player: Trent assigned 2 armies to  Spain
+Log: Cheater Player: Trent Now owns Portugal
+Log: Cheater Player: Trent Now owns France
+Log: Cheater Player: Trent assigned 5 armies to  Spain
+Log: Cheater Player: Trent assigned 2 armies to  Spain
+Log: Cheater Player: Trent assigned 2 armies to  Spain
+Log: Cheater Player: Trent assigned 1 armies to  Spain
+Log: Cheater Player: Trent Now owns Portugal
+Log: Cheater Player: Trent Now owns France
+Log: Cheater Player: Trent assigned 9 armies to  Spain
+Log: Cheater Player: Trent assigned 1 armies to  Spain
+Log: Cheater Player: Trent Now owns Portugal
+Log: Cheater Player: Trent Now owns France
+Log: Invalid Strategy passed in command. Only Aggressive, Benevolent, Random, Cheater strategies are allowed.
+Log: User entered invalid number of maps in command, Range of map :- 1<=map<=5
+Log: debrew has been loaded to start the game
+Log: canada has been loaded to start the game
+Log: Player:  Vini with strategy: Random has been added in tournament.
+Log: Player:  Shuv with strategy: Random has been added in tournament.
+Log: User entered invalid number of turns in command, Range of turns :- 10<=number of turns<=50
+Log: User entered invalid number of games in command, Range of games :- 1<=number of games<=5
+Log: Invalid Strategy passed in command. Only Aggressive, Benevolent, Random, Cheater strategies are allowed.
+Log: User entered invalid number of maps in command, Range of map :- 1<=map<=5
+Log: debrew has been loaded to start the game
+Log: canada has been loaded to start the game
+Log: Player:  Vini with strategy: Random has been added in tournament.
+Log: Player:  Shuv with strategy: Random has been added in tournament.
+Log: User entered invalid number of turns in command, Range of turns :- 10<=number of turns<=50
+Log: User entered invalid number of games in command, Range of games :- 1<=number of games<=5
+
+Input Command: editcontinent
+Log: Can not Edit Continent, please perform `editmap` first
+
+Input Command: loadgame NoGame.txt
+
+Input Command: savemap
+Log: No map found to save, Please `editmap` first
+
+Input Command: savegame TestGameLog.txt
+Log: Game Saved Successfully to TestGameLog.txt
+
+Input Command: editmap
+
+Input Command: assigncountries add india
+
+Input Command: editcontinent -add Europe 10 -add America 20
+Log: Continent Europe added successfully!
+Log: Continent America added successfully!
+
+Input Command: editcontinent -remove Europe
+Log: Continent Europe removed successfully!
+Log: Advance Order : advance India France 15 is not executed as armies given in advance order exceeds armies of source country : India
+Log: Advance Order : advance Canada France 10 is not executed as source country : Canada has 10 army units and all of those cannot be given advance order, at least one army unit has to retain the territory.
+Log: Advance Order : advance Italy France 10 is not executed since Source country : Italy given in advance command does not belongs to the player : Vinisha
+Player : Vini has won the Game by conquering all countries. Exiting the Game .....
+
+Input Command: editcontinent
+Log: Can not Edit Continent, please perform `editmap` first
+
+Input Command: loadgame NoGame.txt
+
+Input Command: savemap
+Log: No map found to save, Please `editmap` first
+
+Input Command: savegame TestGameLog.txt
+Log: Game Saved Successfully to TestGameLog.txt
+
+Input Command: editmap
+
+Input Command: assigncountries add india
+
+Input Command: editcontinent -add Europe 10 -add America 20
+Log: Continent Europe added successfully!
+Log: Continent America added successfully!
+
+Input Command: editcontinent -remove Europe
+Log: Continent Europe removed successfully!
+Player : Vini has won the Game by conquering all countries. Exiting the Game .....
+Log: 
+Player : Jay is executing Bomb card on country :  Japan with armies :  4. New armies: 2
+Log: 
+Player : Jay is executing Bomb card on country :  India with armies :  15. New armies: 7
+Log: 
+Player : Jay is executing Bomb card on country :  Canada with armies :  1. New armies: 0
+Log: Bomb card order : bomb Norway is not executed since Target country : Norway given in bomb command is owned by the player : Jay VALIDATES:- You cannot bomb your own territory!
+Log: Country/Continent Assignment:
+ Player : Vinisha is assigned with country : Quebec-Central
+ Player : Vinisha is assigned with country : Nunavut-Continental
+ Player : Vinisha is assigned with country : Manitoba-North
+ Player : Vinisha is assigned with country : Northwest_Territories-Continental
+ Player : Vinisha is assigned with country : British_Columbia-North
+ Player : Vinisha is assigned with country : Alberta-South
+ Player : Vinisha is assigned with country : N&L-Newfoundland
+ Player : Vinisha is assigned with country : N&L-Labrador
+ Player : Vinisha is assigned with country : Quebec-North
+ Player : Vinisha is assigned with country : NU-Northern_Islands
+ Player : Vinisha is assigned with country : BC-Vancouver_Island
+ Player : Vinisha is assigned with country : NT-Victoria_Island-West
+ Player : Vinisha is assigned with country : NU-Victoria_Island-East
+ Player : Vinisha is assigned with country : NU-Southern_Islands
+ Player : Vinisha is assigned with country : Saskatchewan-South
+ Player : Nidhi is assigned with country : Ontario-South
+ Player : Nidhi is assigned with country : Manitoba-South
+ Player : Nidhi is assigned with country : Nova_Scotia
+ Player : Nidhi is assigned with country : Quebec-South
+ Player : Nidhi is assigned with country : Alberta-North
+ Player : Nidhi is assigned with country : Saskatchewan-North
+ Player : Nidhi is assigned with country : NT-Banks_Island
+ Player : Nidhi is assigned with country : Yukon_Territory
+ Player : Nidhi is assigned with country : Ontario-North
+ Player : Nidhi is assigned with country : NT-Northern_Islands
+ Player : Nidhi is assigned with country : Prince_Edward_Island
+ Player : Nidhi is assigned with country : Ontario-West
+ Player : Nidhi is assigned with country : NU-Ellesmere_Island
+ Player : Nidhi is assigned with country : British_Columbia-South
+ Player : Nidhi is assigned with country : NU-Baffin_Island
+ Player : Vinisha is assigned with country : New_Brunswick

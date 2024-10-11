@@ -1,0 +1,59 @@
+[Map]
+author=StellarNavigator42
+image=002_SN42_Nebulon-Q3.bmp
+wrap=no
+scroll=horizontal
+warn=no
+
+[Continents]
+Command Bridge=4
+Right Engine=5
+Left Engine=5
+Main Cargo Bay=9
+Secondary Cargo Bay=9
+Starboard Escape Pods=7
+Portside Escape Pods=7
+Fusion Reactor=11
+
+[Territories]
+CommandBridge01,450,300,Command Bridge,CommandBridge02,MainSector01
+CommandBridge02,450,320,Command Bridge,CommandBridge01,CommandBridge03,MainSector01,SecondarySector04
+CommandBridge03,450,340,Command Bridge,CommandBridge02,SecondarySector04
+MainSector01,400,170,Main Cargo Bay,MainSector02,MainSector05,MainSector09,MainSector10
+MainSector02,330,140,Main Cargo Bay,MainSector04,MainSector03,MainSector01
+MainSector03,410,220,Main Cargo Bay,MainSector06,MainSector02,MainSector05,MainSector04,MainSector07
+MainSector04,416,270,Main Cargo Bay,EngineSector01!,MainSector06,MainSector05,MainSector03
+MainSector05,478,210,Main Cargo Bay,MainSector06,MainSector02,MainSector03
+MainSector06,500,260,Main Cargo Bay,MainSector07,MainSector05,MainSector04,MainSector03
+MainSector07,325,240,Main Cargo Bay,CommandDeck02,MainSector01,MainSector08,MainSector03,MainSector04
+MainSector08,250,220,Main Cargo Bay,MainSector07,EngineSector03,EngineSector02,MainSector09,MainSector01
+MainSector09,510,320,Main Cargo Bay,EngineSector01!,MainSector06,EngineDeck01
+SecondarySector01,513,420,Secondary Cargo Bay,SecondaryDeck01,SecondarySector02,EngineDeck02
+SecondarySector02,508,470,Secondary Cargo Bay,SecondarySector01,SecondarySector08,SecondarySector03,SecondarySector07
+SecondarySector03,477,530,Secondary Cargo Bay,SecondarySector02,SecondarySector07,SecondarySector04
+SecondarySector04,336,600,Secondary Cargo Bay,SecondarySector05,SecondarySector07,SecondarySector03
+SecondarySector05,209,570,Secondary Cargo Bay,SecondarySector06,SecondarySector04,SecondarySector08,EngineSector04
+SecondarySector06,249,520,Secondary Cargo Bay,EngineSector05,SecondarySector05,EngineSector06,EngineSector04,SecondarySector08
+SecondarySector07,329,500,Secondary Cargo Bay,SecondarySector05,SecondaryDeck03,SecondarySector08,SecondarySector07,SecondarySector06
+SecondarySector08,410,520,Secondary Cargo Bay,SecondarySector07,SecondarySector02,SecondarySector03,SecondarySector04,SecondarySector05
+EngineSector01,577,510,Right Engine,MainSector04,EngineDeck03,EngineSector09,EngineSector07,EngineDeck04,EngineSector06,EngineSector05
+EngineSector02,450,650,Right Engine,EngineDeck04,EngineDeck05
+EngineSector03,468,668,Right Engine,EngineDeck05
+EngineSector04,484,685,Right Engine,EngineDeck05
+EngineSector05,503,698,Right Engine,EngineDeck05
+EngineSector06,520,716,Right Engine,EngineDeck03,EngineDeck05
+EngineSector07,564,560,Right Engine,EngineSector01,EngineDeck05
+EngineSector08,605,540,Right Engine,EngineSector09
+EngineSector09,621,530,Right Engine,EngineSector01,EngineSector08
+EngineSector10,609,460,Right Engine,EngineSector01,EngineDeck03,EngineSector11
+EngineSector11,614,430,Right Engine,EngineSector01,SecondarySector04
+MainSector10,601,350,Command Bridge,MainSector04,MainSector11,CommandBridge01,CommandBridge02,SecondarySector05,SecondarySector04,SecondarySector02
+MainSector11,571,360,Command Bridge,MainSector04,MainSector10,SecondarySector05,EngineDeck01
+EngineSector12,570,390,Command Bridge,MainSector11,MainSector10,EngineSector01,SecondarySector04,EngineDeck02
+EngineSector13!,451,310,Fusion Reactor,MainDeck01,EngineHall01,MainSector09,MainSector04,EngineDeck01,CommandDeck02
+ControlSector01,255,330,Fusion Reactor,CommandDeck02,ControlSector03,EngineHall02,EngineHall03
+ControlSector02,296,350,Fusion Reactor,ControlHall01,ControlDeck01
+ControlSector03,189,370,Fusion Reactor,ControlDeck02,ControlSector01,ControlSector05,ControlSector06,ControlSector04
+ControlSector04,122,370,Fusion Reactor,ControlSector03
+ControlSector05,160,360,Fusion Reactor,ControlSector03
+ControlSector06,162,390,Fusion Reactor,ControlSector03
