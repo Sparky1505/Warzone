@@ -188,36 +188,11 @@ public class Map implements Serializable{
             if (null == c.getD_countries() || c.getD_countries().size()<1){
                 throw new InvalidMap(c.getD_continentName() + " has no countries, it must possess atleast 1 country");
             }
-            if(!subGraphConnectivity(c)){
+            if(!c.subGraphConnectivity(this)){
                 l_flagConnectivity=false;
             }
         }
         return l_flagConnectivity;
-    }
-
-    /**
-     * Validates the connectivity of a subgraph within a continent.
-     * @param p_continent The continent to validate.
-     * @return True if the subgraph is connected, false otherwise.
-     * @throws InvalidMap if any country within the continent is not reachable.
-     */
-    public boolean subGraphConnectivity(Continent p_continent) throws InvalidMap {
-        HashMap<Integer, Boolean> l_continentCountry = new HashMap<Integer, Boolean>();
-
-        for (Country c : p_continent.getD_countries()) {
-            l_continentCountry.put(c.getD_countryId(), false);
-        }
-        dfsSubgraph(p_continent.getD_countries().get(0), l_continentCountry, p_continent);
-
-        // Iterates Over Entries to locate unreachable countries in continent
-        for (Entry<Integer, Boolean> entry : l_continentCountry.entrySet()) {
-            if (!entry.getValue()) {
-                Country l_country = getCountry(entry.getKey());
-                String l_messageException = l_country.getD_countryName() + " in Continent " + p_continent.getD_continentName() + " is not reachable";
-                throw new InvalidMap(l_messageException);
-            }
-        }
-        return !l_continentCountry.containsValue(false);
     }
 
     /**

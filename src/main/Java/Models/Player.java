@@ -6,7 +6,6 @@ import java.io.InputStreamReader;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map.Entry;
 import java.util.Random;
 import Constants.ApplicationConstants;
 import Exceptions.InvalidCommand;
@@ -436,7 +435,7 @@ public class Player implements Serializable {
      * @throws InvalidMap     indicates failure in using the invalid map
      */
     public void issue_order(IssueOrderPhase p_issueOrderPhase) throws InvalidCommand, IOException, InvalidMap {
-        p_issueOrderPhase.askForOrder(this);
+        askForOrder(p_issueOrderPhase);
     }
 
     /**
@@ -615,7 +614,7 @@ public class Player implements Serializable {
                         this.d_orderList.add(l_newOrder);
                         l_newOrder.printOrder();
                         this.setD_playerLog("Card Command Added to Queue for Execution Successfully!", "log");
-                        p_gameState.updateLog(getD_playerLog(), "effect");
+                        p_gameState.d_logEntryBuffer.updateLog(getD_playerLog(), "effect");
                     }
                     break;
                 case "blockade":
@@ -624,7 +623,7 @@ public class Player implements Serializable {
                         this.d_orderList.add(l_blockadeOrder);
                         l_blockadeOrder.printOrder();
                         this.setD_playerLog("Card Command Added to Queue for Execution Successfully!", "log");
-                        p_gameState.updateLog(getD_playerLog(), "effect");
+                        p_gameState.d_logEntryBuffer.updateLog(getD_playerLog(), "effect");
                     }
                     break;
                 case "bomb":
@@ -633,7 +632,7 @@ public class Player implements Serializable {
                         this.d_orderList.add(l_bombOrder);
                         l_bombOrder.printOrder();
                         this.setD_playerLog("Card Command Added to Queue for Execution Successfully!", "log");
-                        p_gameState.updateLog(getD_playerLog(), "effect");
+                        p_gameState.d_logEntryBuffer.updateLog(getD_playerLog(), "effect");
                     }
                     break;
                 case "negotiate":
@@ -642,16 +641,124 @@ public class Player implements Serializable {
                         this.d_orderList.add(l_negotiateOrder);
                         l_negotiateOrder.printOrder();
                         this.setD_playerLog("Card Command Added to Queue for Execution Successfully!", "log");
-                        p_gameState.updateLog(getD_playerLog(), "effect");
+                        p_gameState.d_logEntryBuffer.updateLog(getD_playerLog(), "effect");
                     }
                     break;
                 default:
                     this.setD_playerLog("Invalid Command!", "error");
-                    p_gameState.updateLog(getD_playerLog(), "effect");
+                    p_gameState.d_logEntryBuffer.updateLog(getD_playerLog(), "effect");
                     break;
             }
         } else {
             this.setD_playerLog("Invalid Card Command Passed! Check Arguments!", "error");
         }
+    }
+
+    /**
+     * Produces the battle result.
+     *
+     * @param p_sourceCountry  The source country.
+     * @param p_targetCountry  The target country.
+     * @param p_attackerArmies The list of attacker armies.
+     * @param p_defenderArmies The list of defender armies.
+     * @param advance
+     */
+    void produceBattleResult(Country p_sourceCountry, Country p_targetCountry, List<Integer> p_attackerArmies,
+                             List<Integer> p_defenderArmies, Advance advance) {
+        Integer l_attackerArmiesLeft = advance.d_numberOfArmiesToPlace > p_targetCountry.getD_armies()
+                ? advance.d_numberOfArmiesToPlace - p_targetCountry.getD_armies()
+                : 0;
+        Integer l_defenderArmiesLeft = advance.d_numberOfArmiesToPlace < p_targetCountry.getD_armies()
+                ? p_targetCountry.getD_armies() - advance.d_numberOfArmiesToPlace
+                : 0;
+        for (int l_i = 0; l_i < p_attackerArmies.size(); l_i++) {
+            if (p_attackerArmies.get(l_i) > p_defenderArmies.get(l_i)) {
+                l_attackerArmiesLeft++;
+            } else {
+                l_defenderArmiesLeft++;
+            }
+        }
+        advance.handleSurvivingArmies(l_attackerArmiesLeft, l_defenderArmiesLeft, p_sourceCountry, p_targetCountry,
+                this);
+    }
+
+    /**
+     * Deploys armies to the target country.
+     *
+     * @param p_targetCountry The target country.
+     * @param advance
+     */
+    void deployArmiesToTarget(Country p_targetCountry, Advance advance) {
+        Integer l_updatedTargetContArmies = p_targetCountry.getD_armies() + advance.d_numberOfArmiesToPlace;
+        p_targetCountry.setD_armies(l_updatedTargetContArmies);
+    }
+
+    /**
+     * Checks if the player has deployed any armies.
+     *
+     * @return True if the player has deployed armies, otherwise false.
+     */
+    Boolean checkIfArmiesDepoyed(){
+        if(getD_coutriesOwned().stream().anyMatch(l_country -> l_country.getD_armies()>0)){
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Finds the strongest country owned by the player.
+     *
+     * @param p_gameState      The current game state.
+     * @param aggressivePlayer
+     * @return The strongest country owned by the player.
+     */
+    Country getStrongestCountry(GameState p_gameState, AggressivePlayer aggressivePlayer) {
+        List<Country> l_countriesOwnedByPlayer = getD_coutriesOwned();
+        Country l_Country = aggressivePlayer.calculateStrongestCountry(l_countriesOwnedByPlayer);
+        return l_Country;
+    }
+
+    /**
+     * Finds the weakest country owned by the player.
+     *
+     * @param benevolentPlayer@return The weakest country owned by the player.
+     */
+    Country getWeakestCountry(BenevolentPlayer benevolentPlayer) {
+        List<Country> l_countriesOwnedByPlayer = getD_coutriesOwned();
+        Country l_Country = benevolentPlayer.calculateWeakestCountry(l_countriesOwnedByPlayer);
+        return l_Country;
+    }
+
+    /**
+     * Retrieves neighboring enemy countries of a given country.
+     *
+     * @param country@return List of neighboring enemy country IDs.
+     */
+    ArrayList<Integer> getEnemies(Country country){
+        ArrayList<Integer> l_enemyNeighbors = new ArrayList<Integer>();
+
+        for(Integer l_countryID : country.getD_adjacentCountryIds()){
+            if(!getCountryIDs().contains(l_countryID))
+                l_enemyNeighbors.add(l_countryID);
+        }
+        return l_enemyNeighbors;
+    }
+
+    /**
+     * Asks for a command from the player.
+     *
+     * @param issueOrderPhase@throws InvalidCommand if the command is invalid.
+     * @throws IOException if an I/O error occurs.
+     * @throws InvalidMap  if the map is invalid.
+     */
+    void askForOrder(IssueOrderPhase issueOrderPhase) throws InvalidCommand, IOException, InvalidMap{
+
+        String l_commandEntered = getPlayerOrder(issueOrderPhase.d_gameState);
+
+        if(l_commandEntered == null) return;
+
+        issueOrderPhase.d_gameState.d_logEntryBuffer.updateLog("(Player: "+ getPlayerName()+") "+ l_commandEntered, "order");
+
+        issueOrderPhase.handleCommand(l_commandEntered, this);
     }
 }

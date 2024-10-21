@@ -127,7 +127,7 @@ public abstract class Phase implements Serializable {
         String l_rootCommand = l_command.getRootCommand();
         l_isMapLoaded = d_gameState.getD_map() != null;
 
-        d_gameState.updateLog(l_command.getD_command(), "command");
+        d_gameState.d_logEntryBuffer.updateLog(l_command.getD_command(), "command");
 
         switch (l_rootCommand) {
             case "editmap": {

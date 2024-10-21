@@ -49,7 +49,7 @@ public class Deploy implements Order,Serializable {
             d_playerInitiator.setD_noOfUnallocatedArmies(
                     d_playerInitiator.getD_noOfUnallocatedArmies() + this.d_numberOfArmiesToPlace);
         }
-        p_gameState.updateLog(orderExecutionLog(), "effect");
+        p_gameState.d_logEntryBuffer.updateLog(orderExecutionLog(), "effect");
     }
 
     /**

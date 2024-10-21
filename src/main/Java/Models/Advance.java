@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import Services.PlayerService;
 import Utils.CommonUtil;
 
 /**
@@ -68,7 +67,7 @@ public class Advance implements Order, Serializable {
             l_sourceCountry.setD_armies(l_sourceArmiesToUpdate);
 
             if (l_playerOfTargetCountry.getPlayerName().equalsIgnoreCase(this.d_playerInitiator.getPlayerName())) {
-                deployArmiesToTarget(l_targetCountry);
+                d_playerInitiator.deployArmiesToTarget(l_targetCountry, this);
             } else if (l_targetCountry.getD_armies() == 0) {
                 conquerTargetCountry(p_gameState, l_playerOfTargetCountry, l_targetCountry);
                 this.d_playerInitiator.setD_oneCardPerTurn(true);
@@ -81,7 +80,7 @@ public class Advance implements Order, Serializable {
                 }
             }
         } else {
-            p_gameState.updateLog(orderExecutionLog(), "effect");
+            p_gameState.d_logEntryBuffer.updateLog(orderExecutionLog(), "effect");
         }
     }
 
@@ -101,11 +100,11 @@ public class Advance implements Order, Serializable {
 
         List<Integer> l_attackerArmies = generateRandomArmyUnits(l_armiesInAttack, "attacker");
         List<Integer> l_defenderArmies = generateRandomArmyUnits(l_armiesInAttack, "defender");
-        this.produceBattleResult(p_sourceCountry, p_targetCountry, l_attackerArmies, l_defenderArmies,
-                p_playerOfTargetCountry);
+        p_playerOfTargetCountry.produceBattleResult(p_sourceCountry, p_targetCountry, l_attackerArmies, l_defenderArmies,
+                this);
 
-        p_gameState.updateLog(orderExecutionLog(), "effect");
-        this.updateContinents(this.d_playerInitiator, p_playerOfTargetCountry, p_gameState);
+        p_gameState.d_logEntryBuffer.updateLog(orderExecutionLog(), "effect");
+        p_gameState.updateContinents(this.d_playerInitiator, p_playerOfTargetCountry);
     }
 
     /**
@@ -123,8 +122,8 @@ public class Advance implements Order, Serializable {
                 "Player : " + this.d_playerInitiator.getPlayerName() + " is assigned with Country : "
                         + p_targetCountry.getD_countryName() + " and armies : " + p_targetCountry.getD_armies(),
                 "default");
-        p_gameState.updateLog(orderExecutionLog(), "effect");
-        this.updateContinents(this.d_playerInitiator, p_playerOfTargetCountry, p_gameState);
+        p_gameState.d_logEntryBuffer.updateLog(orderExecutionLog(), "effect");
+        p_gameState.updateContinents(this.d_playerInitiator, p_playerOfTargetCountry);
     }
 
     /**
@@ -143,44 +142,6 @@ public class Advance implements Order, Serializable {
             }
         }
         return l_playerOfTargetCountry;
-    }
-
-    /**
-     * Deploys armies to the target country.
-     *
-     * @param p_targetCountry The target country.
-     */
-    public void deployArmiesToTarget(Country p_targetCountry) {
-        Integer l_updatedTargetContArmies = p_targetCountry.getD_armies() + this.d_numberOfArmiesToPlace;
-        p_targetCountry.setD_armies(l_updatedTargetContArmies);
-    }
-
-    /**
-     * Produces the battle result.
-     *
-     * @param p_sourceCountry        The source country.
-     * @param p_targetCountry        The target country.
-     * @param p_attackerArmies       The list of attacker armies.
-     * @param p_defenderArmies       The list of defender armies.
-     * @param p_playerOfTargetCountry The player of the target country.
-     */
-    private void produceBattleResult(Country p_sourceCountry, Country p_targetCountry, List<Integer> p_attackerArmies,
-                                     List<Integer> p_defenderArmies, Player p_playerOfTargetCountry) {
-        Integer l_attackerArmiesLeft = this.d_numberOfArmiesToPlace > p_targetCountry.getD_armies()
-                ? this.d_numberOfArmiesToPlace - p_targetCountry.getD_armies()
-                : 0;
-        Integer l_defenderArmiesLeft = this.d_numberOfArmiesToPlace < p_targetCountry.getD_armies()
-                ? p_targetCountry.getD_armies() - this.d_numberOfArmiesToPlace
-                : 0;
-        for (int l_i = 0; l_i < p_attackerArmies.size(); l_i++) {
-            if (p_attackerArmies.get(l_i) > p_defenderArmies.get(l_i)) {
-                l_attackerArmiesLeft++;
-            } else {
-                l_defenderArmiesLeft++;
-            }
-        }
-        this.handleSurvivingArmies(l_attackerArmiesLeft, l_defenderArmiesLeft, p_sourceCountry, p_targetCountry,
-                p_playerOfTargetCountry);
     }
 
     /**
@@ -235,14 +196,14 @@ public class Advance implements Order, Serializable {
             this.setD_orderExecutionLog(this.currentOrder() + " is not executed since Source country : "
                     + this.d_sourceCountryName + " given in advance command does not belongs to the player : "
                     + d_playerInitiator.getPlayerName(), "error");
-            p_gameState.updateLog(orderExecutionLog(), "effect");
+            p_gameState.d_logEntryBuffer.updateLog(orderExecutionLog(), "effect");
             return false;
         }
         if (this.d_numberOfArmiesToPlace > l_country.getD_armies()) {
             this.setD_orderExecutionLog(this.currentOrder()
                     + " is not executed as armies given in advance order exceeds armies of source country : "
                     + this.d_sourceCountryName, "error");
-            p_gameState.updateLog(orderExecutionLog(), "effect");
+            p_gameState.d_logEntryBuffer.updateLog(orderExecutionLog(), "effect");
             return false;
         }
         if (this.d_numberOfArmiesToPlace == l_country.getD_armies()) {
@@ -250,13 +211,13 @@ public class Advance implements Order, Serializable {
                             + this.d_sourceCountryName + " has " + l_country.getD_armies()
                             + " army units and all of those cannot be given advance order, at least one army unit has to retain the territory.",
                     "error");
-            p_gameState.updateLog(orderExecutionLog(), "effect");
+            p_gameState.d_logEntryBuffer.updateLog(orderExecutionLog(), "effect");
             return false;
         }
         if (!d_playerInitiator.negotiationValidation(this.d_targetCountryName)) {
             this.setD_orderExecutionLog(this.currentOrder() + " is not executed as " + d_playerInitiator.getPlayerName()
                     + " has negotiation pact with the target country's player!", "error");
-            p_gameState.updateLog(orderExecutionLog(), "effect");
+            p_gameState.d_logEntryBuffer.updateLog(orderExecutionLog(), "effect");
             return false;
         }
         return true;
@@ -338,26 +299,6 @@ public class Advance implements Order, Serializable {
     }
 
     /**
-     * Updates the continents of players involved in battle.
-     *
-     * @param p_playerOfSourceCountry The player of the source country.
-     * @param p_playerOfTargetCountry The player of the target country.
-     * @param p_gameState             The current game state.
-     */
-    private void updateContinents(Player p_playerOfSourceCountry, Player p_playerOfTargetCountry,
-                                  GameState p_gameState) {
-        System.out.println("Updating continents of players involved in battle...");
-        List<Player> l_playesList = new ArrayList<>();
-        p_playerOfSourceCountry.setD_continentsOwned(new ArrayList<>());
-        p_playerOfTargetCountry.setD_continentsOwned(new ArrayList<>());
-        l_playesList.add(p_playerOfSourceCountry);
-        l_playesList.add(p_playerOfTargetCountry);
-
-        PlayerService l_playerService = new PlayerService();
-        l_playerService.performContinentAssignment(l_playesList, p_gameState.getD_map().getD_continents());
-    }
-
-    /**
      * Retrieves the name of the order.
      *
      * @return The name of the order.
@@ -405,7 +346,7 @@ public class Advance implements Order, Serializable {
                     + this.d_playerInitiator.getPlayerName();
             this.setD_orderExecutionLog(l_country1 + System.lineSeparator() + l_country2, "default");
         }
-        p_gameState.updateLog(orderExecutionLog(), "effect");
-        this.updateContinents(this.d_playerInitiator, p_playerOfTargetCountry, p_gameState);
+        p_gameState.d_logEntryBuffer.updateLog(orderExecutionLog(), "effect");
+        p_gameState.updateContinents(this.d_playerInitiator, p_playerOfTargetCountry);
     }
 }

@@ -2,7 +2,6 @@ package Models;
 
 import static org.junit.Assert.assertEquals;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -94,7 +93,7 @@ public class BenevolentPlayerTest {
      */
     @Test
     public void testWeakestCountry() {
-        assertEquals("Pakistan", d_benevolentPlayer.getWeakestCountry(d_player).getD_countryName());
+        assertEquals("Pakistan", d_player.getWeakestCountry(d_benevolentPlayer).getD_countryName());
     }
     /**
      * Tests if the BenevolentPlayer's method getWeakestNeighbor can correctly identify

@@ -58,7 +58,7 @@ public class AdvanceTest {
         l_targetPlayer.setD_coutriesOwned(l_s2);
 
         Advance l_advance = new Advance(l_sourcePlayer, "India", "Canada", 5);
-        l_advance.handleSurvivingArmies(5, 0, l_country1, l_country2, l_targetPlayer);
+        l_targetPlayer.handleSurvivingArmies(5, 0, l_country1, l_country2, l_advance);
 
         assertEquals(l_targetPlayer.getD_coutriesOwned().size(), 0);
         assertEquals(l_sourcePlayer.getD_coutriesOwned().size(), 2);
@@ -85,7 +85,7 @@ public class AdvanceTest {
         l_targetPlayer.setD_coutriesOwned(l_s2);
 
         Advance l_advance = new Advance(l_sourcePlayer, "India", "Canada", 5);
-        l_advance.handleSurvivingArmies(3, 2, l_country1, l_country2, l_targetPlayer);
+        l_targetPlayer.handleSurvivingArmies(3, 2, l_country1, l_country2, l_advance);
 
         assertEquals(l_targetPlayer.getD_coutriesOwned().size(), 1);
         assertEquals(l_sourcePlayer.getD_coutriesOwned().size(), 1);
@@ -111,7 +111,7 @@ public class AdvanceTest {
         l_sourcePlayer.setD_coutriesOwned(l_s1);
 
         Advance l_advance = new Advance(l_sourcePlayer, "India", "Canada", 3);
-        l_advance.deployArmiesToTarget(l_country2);
+        l_advance.d_playerInitiator.deployArmiesToTarget(l_country2, l_advance);
         assertEquals(l_country2.getD_armies().toString(), "7");
     }
 }

@@ -71,6 +71,6 @@ public class OrderExecutionPhaseTest {
     @Test
     public void testEndOfTheGame() {
         OrderExecutionPhase l_orderExec = new OrderExecutionPhase(new GameEngine(), d_gameState);
-        assertTrue(l_orderExec.checkEndOftheGame(d_gameState));
+        assertTrue(d_gameState.checkEndOftheGame(l_orderExec));
     }
 }

@@ -1,5 +1,7 @@
 package Utils;
 
+import Constants.ApplicationConstants;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -112,5 +114,28 @@ public class Command implements Serializable{
         return d_command;
     }
 
+    /**
+     * Checks if all required arguments for the tournament mode are present in the list of operations.
+     * The required arguments are 'M' (map selection), 'P' (player strategy selection), 'G' (number of additional games),
+     * and 'D' (maximum number of turns).
+     *
+     * @param p_operations_list The list of operations and their arguments.
+     * @return True if all required arguments are present, false otherwise.
+     */
+    public boolean requiredTournamentArgPresent(List<Map<String, String>> p_operations_list) {
+        String l_argumentKey = new String();
+        if (p_operations_list.size() != 4)
+            return false;
+
+        for (Map<String, String> l_map : p_operations_list) {
+            if (checkRequiredKeysPresent(ApplicationConstants.ARGUMENTS, l_map)
+                    && checkRequiredKeysPresent(ApplicationConstants.OPERATION, l_map)) {
+                l_argumentKey.concat(l_map.get(ApplicationConstants.OPERATION));
+            }
+        }
+        if (!l_argumentKey.equalsIgnoreCase("MPGD"))
+            return false;
+        return true;
     }
+}
 

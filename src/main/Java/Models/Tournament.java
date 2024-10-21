@@ -4,13 +4,12 @@ package Models;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
+
 import Constants.ApplicationConstants;
 import Controllers.GameEngine;
 import Exceptions.InvalidCommand;
 import Exceptions.InvalidMap;
 import Services.MapService;
-import Utils.Command;
 
 /**
  * The Tournament class represents a tournament in the game. It holds a list of game states for each game
@@ -69,7 +68,7 @@ public class Tournament implements Serializable {
                             l_gameState.getD_map().getD_mapFile());
                     l_loadedMap.setD_mapFile(l_gameState.getD_map().getD_mapFile());
 
-                    List<Player> l_playersToCopy = getPlayersToAdd(l_gameState.getD_players());
+                    List<Player> l_playersToCopy = d_mapService.getPlayersToAdd(l_gameState.getD_players());
                     l_gameStateToAdd.setD_players(l_playersToCopy);
 
                     l_gameStateToAdd.setD_loadCommand();
@@ -108,32 +107,6 @@ public class Tournament implements Serializable {
                     "effect");
             return false;
         }
-    }
-
-    /**
-     * Creates a new list of players based on the given list of players. Each player in the new list is a copy
-     * of the corresponding player in the original list.
-     *
-     * @param p_playersList The list of players to copy.
-     * @return A new list of players with copied properties from the original list.
-     */
-    private List<Player> getPlayersToAdd(List<Player> p_playersList) {
-        List<Player> p_playersToCopy = new ArrayList<>();
-        for (Player l_pl : p_playersList) {
-            Player l_player = new Player(l_pl.getPlayerName());
-
-            if (l_pl.getD_playerBehaviorStrategy() instanceof AggressivePlayer)
-                l_player.setStrategy(new AggressivePlayer());
-            else if (l_pl.getD_playerBehaviorStrategy() instanceof RandomPlayer)
-                l_player.setStrategy(new RandomPlayer());
-            else if (l_pl.getD_playerBehaviorStrategy() instanceof BenevolentPlayer)
-                l_player.setStrategy(new BenevolentPlayer());
-            else if (l_pl.getD_playerBehaviorStrategy() instanceof CheaterPlayer)
-                l_player.setStrategy(new CheaterPlayer());
-
-            p_playersToCopy.add(l_player);
-        }
-        return p_playersToCopy;
     }
 
     /**
@@ -181,7 +154,7 @@ public class Tournament implements Serializable {
             return false;
         }
         for (GameState l_gameState : d_gameStateList) {
-            l_gameState.setD_players(getPlayersToAdd(l_playersInTheGame));
+            l_gameState.setD_players(d_mapService.getPlayersToAdd(l_playersInTheGame));
         }
         return true;
     }
@@ -270,31 +243,6 @@ public class Tournament implements Serializable {
                     "effect");
             return false;
         }
-        return true;
-    }
-
-    /**
-     * Checks if all required arguments for the tournament mode are present in the list of operations.
-     * The required arguments are 'M' (map selection), 'P' (player strategy selection), 'G' (number of additional games),
-     * and 'D' (maximum number of turns).
-     *
-     * @param p_operations_list The list of operations and their arguments.
-     * @param p_command         The command object representing the tournament command.
-     * @return True if all required arguments are present, false otherwise.
-     */
-    public boolean requiredTournamentArgPresent(List<Map<String, String>> p_operations_list, Command p_command) {
-        String l_argumentKey = new String();
-        if (p_operations_list.size() != 4)
-            return false;
-
-        for (Map<String, String> l_map : p_operations_list) {
-            if (p_command.checkRequiredKeysPresent(ApplicationConstants.ARGUMENTS, l_map)
-                    && p_command.checkRequiredKeysPresent(ApplicationConstants.OPERATION, l_map)) {
-                l_argumentKey.concat(l_map.get(ApplicationConstants.OPERATION));
-            }
-        }
-        if (!l_argumentKey.equalsIgnoreCase("MPGD"))
-            return false;
         return true;
     }
 

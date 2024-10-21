@@ -88,7 +88,7 @@ public class BenevolentPlayer extends PlayerBehaviorStrategy {
     @Override
     public String createDeployOrder(Player p_player, GameState p_gameState) {
         if (p_player.getD_noOfUnallocatedArmies()>0) {
-            Country l_weakestCountry = getWeakestCountry(p_player);
+            Country l_weakestCountry = p_player.getWeakestCountry(this);
             d_deployCountries.add(l_weakestCountry);
 
             Random l_random = new Random();
@@ -189,18 +189,6 @@ public class BenevolentPlayer extends PlayerBehaviorStrategy {
     private Country getRandomCountry(List<Country> p_listOfCountries) {
         Random l_random = new Random();
         return p_listOfCountries.get(l_random.nextInt(p_listOfCountries.size()));
-    }
-
-    /**
-     * Finds the weakest country owned by the player.
-     *
-     * @param p_player The player for which the weakest country is to be found.
-     * @return The weakest country owned by the player.
-     */
-    public Country getWeakestCountry(Player p_player) {
-        List<Country> l_countriesOwnedByPlayer = p_player.getD_coutriesOwned();
-        Country l_Country = calculateWeakestCountry(l_countriesOwnedByPlayer);
-        return l_Country;
     }
 
     /**

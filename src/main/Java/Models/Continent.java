@@ -2,6 +2,7 @@ package Models;
 
 import Exceptions.InvalidMap;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import Utils.CommonUtil;
 import java.io.Serializable;
@@ -154,5 +155,30 @@ public class Continent implements Serializable {
                 }
             }
         }
+    }
+
+    /**
+     * Validates the connectivity of a subgraph within a continent.
+     *
+     * @param map@return True if the subgraph is connected, false otherwise.
+     * @throws InvalidMap if any country within the continent is not reachable.
+     */
+    boolean subGraphConnectivity(Map map) throws InvalidMap {
+        HashMap<Integer, Boolean> l_continentCountry = new HashMap<Integer, Boolean>();
+
+        for (Country c : getD_countries()) {
+            l_continentCountry.put(c.getD_countryId(), false);
+        }
+        map.dfsSubgraph(getD_countries().get(0), l_continentCountry, this);
+
+        // Iterates Over Entries to locate unreachable countries in continent
+        for (java.util.Map.Entry<Integer, Boolean> entry : l_continentCountry.entrySet()) {
+            if (!entry.getValue()) {
+                Country l_country = map.getCountry(entry.getKey());
+                String l_messageException = l_country.getD_countryName() + " in Continent " + getD_continentName() + " is not reachable";
+                throw new InvalidMap(l_messageException);
+            }
+        }
+        return !l_continentCountry.containsValue(false);
     }
 }

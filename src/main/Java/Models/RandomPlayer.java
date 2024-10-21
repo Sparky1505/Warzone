@@ -126,7 +126,7 @@ public class RandomPlayer extends PlayerBehaviorStrategy {
         Country l_randomOwnCountry = getRandomCountry(p_player.getD_coutriesOwned());
 
         Country l_randomNeighbour = p_gameState.getD_map().getCountry(l_randomOwnCountry.getD_adjacentCountryIds().get(l_random.nextInt(l_randomOwnCountry.getD_adjacentCountryIds().size())));
-        Player l_randomPlayer = getRandomPlayer(p_player, p_gameState);
+        Player l_randomPlayer = p_gameState.getRandomPlayer(p_player);
 
         if (l_randomOwnCountry.getD_armies()>1) {
             l_armiesToSend = l_random.nextInt(l_randomOwnCountry.getD_armies() - 1) + 1;
@@ -180,21 +180,4 @@ public class RandomPlayer extends PlayerBehaviorStrategy {
         return false;
     }
 
-    /**
-     * Chooses a random player to negotaiate.
-     *
-     * @param p_player player object
-     * @param p_gameState current gamestate.
-     * @return player object
-     */
-    private Player getRandomPlayer(Player p_player, GameState p_gameState){
-        ArrayList<Player> l_playerList = new ArrayList<Player>();
-        Random l_random = new Random();
-
-        for(Player l_player : p_gameState.getD_players()){
-            if(!l_player.equals(p_player))
-                l_playerList.add(p_player);
-        }
-        return l_playerList.get(l_random.nextInt(l_playerList.size()));
-    }
 }

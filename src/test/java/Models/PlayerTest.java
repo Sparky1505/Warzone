@@ -40,7 +40,7 @@ public class PlayerTest {
 	public void setup() {
 		d_exisitingPlayerList.add(new Player("Vinisha"));
 		d_exisitingPlayerList.add(new Player("Nidhi"));
-		
+
 		Map l_map = new Map();
 		Country l_c1 = new Country(1, "Finland", 10);
 		l_c1.setD_adjacentCountryIds(Arrays.asList(2));
@@ -102,12 +102,12 @@ public class PlayerTest {
 	 * Checks whether countries given in advance order are adjacent.
 	 */
 	@Test
-	public void testCountryExists() {		
+	public void testCountryExists() {
 		Player l_player = new Player("Jay");
 		assertTrue(l_player.checkAdjacency(l_gs, "Finland", "France"));
 		assertFalse(l_player.checkAdjacency(l_gs, "France", "Finland"));
 	}
-	
+
 	/**
 	 * Checks whether advance order given is added in player's queue or not.
 	 */

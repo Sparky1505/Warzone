@@ -2,7 +2,6 @@ package Models;
 
 import static org.junit.Assert.assertEquals;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -92,7 +91,7 @@ public class AggressivePlayerTest {
      */
     @Test
     public void testStrongestCountry() {
-        assertEquals("Spain", d_aggressivePlayer.getStrongestCountry(d_player, d_gameState).getD_countryName());
+        assertEquals("Spain", d_player.getStrongestCountry(d_gameState, d_aggressivePlayer).getD_countryName());
     }
 
 }

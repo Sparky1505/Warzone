@@ -209,7 +209,7 @@ public class PlayerService implements Serializable{
     public boolean assignCountries(GameState p_gameState)
     {
         if (!checkPlayersAvailability(p_gameState)) {
-            p_gameState.updateLog("Before assigning countries, players should be added.", "effect");
+            p_gameState.d_logEntryBuffer.updateLog("Before assigning countries, players should be added.", "effect");
             return false;
         }
 
@@ -225,7 +225,7 @@ public class PlayerService implements Serializable{
 
         this.performRandomCountryAssignment(l_countriesPerPlayer, l_countries, p_gameState.getD_players(), p_gameState);
         this.performContinentAssignment(p_gameState.getD_players(), p_gameState.getD_map().getD_continents());
-        p_gameState.updateLog(d_assignmentLog, "effect");
+        p_gameState.d_logEntryBuffer.updateLog(d_assignmentLog, "effect");
         System.out.println("Countries have been assigned to Players.");
         return true;
 
@@ -338,7 +338,7 @@ public class PlayerService implements Serializable{
         for (Player l_pl : p_gameState.getD_players()) {
             Integer l_armies = this.calculateArmiesForPlayer(l_pl);
             this.setD_playerLog("Player : " + l_pl.getPlayerName() + " has been assigned with " + l_armies + " armies");
-            p_gameState.updateLog(this.d_playerLog, "effect");
+            p_gameState.d_logEntryBuffer.updateLog(this.d_playerLog, "effect");
 
             l_pl.setD_noOfUnallocatedArmies(l_armies);
         }
@@ -382,7 +382,7 @@ public class PlayerService implements Serializable{
 
         if (!CommonUtil.isNull(l_updatedPlayers)) {
             p_gameState.setD_players(l_updatedPlayers);
-            p_gameState.updateLog(d_playerLog, "effect");
+            p_gameState.d_logEntryBuffer.updateLog(d_playerLog, "effect");
         }
     }
 

@@ -29,6 +29,6 @@ public class ExceptionLogHandler implements Thread.UncaughtExceptionHandler, Ser
     @Override
     public void uncaughtException(Thread p_t, Throwable p_e) {
         // Updates the log in the game state with the exception message
-        d_gameState.updateLog(p_e.getMessage(), "effect");
+        d_gameState.d_logEntryBuffer.updateLog(p_e.getMessage(), "effect");
     }
 }

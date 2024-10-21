@@ -11,7 +11,6 @@ import Exceptions.InvalidCommand;
 import Exceptions.InvalidMap;
 import Services.GameService;
 import Utils.Command;
-import Utils.CommonUtil;
 import Utils.ExceptionLogHandler;
 import Views.MapView;
 
@@ -136,7 +135,7 @@ public class OrderExecutionPhase extends Phase {
         MapView l_map_view = new MapView(d_gameState);
         l_map_view.showMap();
 
-        if (this.checkEndOftheGame(d_gameState))
+        if (d_gameState.checkEndOftheGame(this))
             return;
 
 
@@ -188,7 +187,7 @@ public class OrderExecutionPhase extends Phase {
      * their orders one by one until all orders are executed.
      */
     protected void executeOrders() {
-        addNeutralPlayer(d_gameState);
+        d_gameState.addNeutralPlayer();
         // Executing orders
         d_gameEngine.setD_gameEngineLog("\nStarting Execution Of Orders.....", "start");
         while (d_playerService.unexecutedOrdersExists(d_gameState.getD_players())) {
@@ -196,30 +195,12 @@ public class OrderExecutionPhase extends Phase {
                 Order l_order = l_player.next_order();
                 if (l_order != null) {
                     l_order.printOrder();
-                    d_gameState.updateLog(l_order.orderExecutionLog(), "effect");
+                    d_gameState.d_logEntryBuffer.updateLog(l_order.orderExecutionLog(), "effect");
                     l_order.execute(d_gameState);
                 }
             }
         }
         d_playerService.resetPlayersFlag(d_gameState.getD_players());
-    }
-
-    /**
-     * Adds a neutral player to the game if it doesn't already exist.
-     *
-     * @param p_gameState The current game state.
-     */
-    public void addNeutralPlayer(GameState p_gameState) {
-        Player l_player = p_gameState.getD_players().stream()
-                .filter(l_pl -> l_pl.getPlayerName().equalsIgnoreCase("Neutral")).findFirst().orElse(null);
-        if (CommonUtil.isNull(l_player)) {
-            Player l_neutralPlayer = new Player("Neutral");
-            l_neutralPlayer.setStrategy(new HumanPlayer());
-            l_neutralPlayer.setD_moreOrders(false);
-            p_gameState.getD_players().add(l_neutralPlayer);
-        } else {
-            return;
-        }
     }
 
     /**
@@ -390,27 +371,6 @@ public class OrderExecutionPhase extends Phase {
 
 
     /**
-     * Checks whether the game has ended by determining if any player has conquered all countries on the map.
-     * If a player has conquered all countries, sets the game winner and logs the end of the game.
-     *
-     * @param p_gameState The current state of the game.
-     * @return True if the game has ended, false otherwise.
-     */
-    protected Boolean checkEndOftheGame(GameState p_gameState) {
-        Integer l_totalCountries = p_gameState.getD_map().getD_countries().size();
-        d_playerService.updatePlayersInGame(p_gameState);
-        for (Player l_player : p_gameState.getD_players()) {
-            if (l_player.getD_coutriesOwned().size() == l_totalCountries) {
-                d_gameState.setD_winner(l_player);
-                d_gameEngine.setD_gameEngineLog("Player : " + l_player.getPlayerName()
-                        + " has won the Game by conquering all countries. Exiting the Game .....", "end");
-                return true;
-            }
-        }
-        return false;
-    }
-
-    /**
      * This method is called to handle gameplay during a tournament mode. It sets a log message indicating the start
      * of tournament mode execution.
      *
@@ -418,7 +378,7 @@ public class OrderExecutionPhase extends Phase {
      */
     @Override
     protected void tournamentGamePlay(Command p_enteredCommand) {
-    d_gameEngine.setD_gameEngineLog("\nStarting Execution Of Tournament Mode.....", "start");
+        d_gameEngine.setD_gameEngineLog("\nStarting Execution Of Tournament Mode.....", "start");
 
     }
 }

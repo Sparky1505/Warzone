@@ -6,13 +6,10 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-import Constants.ApplicationConstants;
+
 import Exceptions.InvalidCommand;
 import Exceptions.InvalidMap;
-import Models.Continent;
-import Models.Country;
-import Models.GameState;
-import Models.Map;
+import Models.*;
 import Utils.CommonUtil;
 
 
@@ -90,7 +87,7 @@ public class MapService implements Serializable {
             Map l_map = new Map();
             l_map.setD_mapFile(p_editFilePath);
             p_gameState.setD_map(l_map);
-            p_gameState.updateLog(p_editFilePath+ " The File has been successfully created for the user to edit", "effect");
+            p_gameState.d_logEntryBuffer.updateLog(p_editFilePath+ " The File has been successfully created for the user to edit", "effect");
         } else {
             System.out.println("File already exists.");
             this.loadMap(p_gameState, p_editFilePath);
@@ -98,7 +95,7 @@ public class MapService implements Serializable {
                 p_gameState.setD_map(new Map());
             }
             p_gameState.getD_map().setD_mapFile(p_editFilePath);
-            p_gameState.updateLog(p_editFilePath+ " The File already exists and is loaded for editing", "effect");
+            p_gameState.d_logEntryBuffer.updateLog(p_editFilePath+ " The File already exists and is loaded for editing", "effect");
         }
     }
 
@@ -251,13 +248,13 @@ public class MapService implements Serializable {
                         FileWriter l_writer = new FileWriter(CommonUtil.getMapFilePath(p_fileName));
 
                         parseMapToFile(p_gameState, l_writer, l_mapFormat);
-                        p_gameState.updateLog("Map Saved Successfully", "effect");
+                        p_gameState.d_logEntryBuffer.updateLog("Map Saved Successfully", "effect");
 
-                        p_gameState.updateLog("Map File Saved Successfully", "effect");
+                        p_gameState.d_logEntryBuffer.updateLog("Map File Saved Successfully", "effect");
                         l_writer.close();
                     }
                 } else {
-                    p_gameState.updateLog("Failed to Save the Map File due to Unsuccessful Authentication!", "effect");
+                    p_gameState.d_logEntryBuffer.updateLog("Failed to Save the Map File due to Unsuccessful Authentication!", "effect");
                     p_gameState.setError("Authentication Failed!");
                     return false;
                 }
@@ -265,7 +262,7 @@ public class MapService implements Serializable {
             return true;
         } catch (IOException | InvalidMap l_e) {
             this.setD_MapServiceLog(l_e.getMessage(), p_gameState);
-            p_gameState.updateLog("Couldn't save the changes in map file", "effect");
+            p_gameState.d_logEntryBuffer.updateLog("Couldn't save the changes in map file", "effect");
             p_gameState.setError("There was an issue while saving the Map File");
             return false;
         }
@@ -298,7 +295,7 @@ public class MapService implements Serializable {
      */
     public void resetMap(GameState p_gameState, String p_fileToLoad) {
         System.err.println("Map cannot be loaded, as it is invalid. Kindly provide valid map");
-        p_gameState.updateLog(p_fileToLoad+" map could not be loaded as it is invalid!", "effect");
+        p_gameState.d_logEntryBuffer.updateLog(p_fileToLoad+" map could not be loaded as it is invalid!", "effect");
         p_gameState.setD_map(new Models.Map());
     }
 
@@ -310,7 +307,7 @@ public class MapService implements Serializable {
      */
     public void setD_MapServiceLog(String p_MapServiceLog, GameState p_gameState){
         System.out.println(p_MapServiceLog);
-        p_gameState.updateLog(p_MapServiceLog, "effect");
+        p_gameState.d_logEntryBuffer.updateLog(p_MapServiceLog, "effect");
     }
 
     /**
@@ -331,6 +328,32 @@ public class MapService implements Serializable {
             System.err.println("Invalid Input Passed.");
             return this.getFormatToSave();
         }
+    }
+
+    /**
+     * Creates a new list of players based on the given list of players. Each player in the new list is a copy
+     * of the corresponding player in the original list.
+     *
+     * @param p_playersList The list of players to copy.
+     * @return A new list of players with copied properties from the original list.
+     */
+    public List<Player> getPlayersToAdd(List<Player> p_playersList) {
+        List<Player> p_playersToCopy = new ArrayList<>();
+        for (Player l_pl : p_playersList) {
+            Player l_player = new Player(l_pl.getPlayerName());
+
+            if (l_pl.getD_playerBehaviorStrategy() instanceof AggressivePlayer)
+                l_player.setStrategy(new AggressivePlayer());
+            else if (l_pl.getD_playerBehaviorStrategy() instanceof RandomPlayer)
+                l_player.setStrategy(new RandomPlayer());
+            else if (l_pl.getD_playerBehaviorStrategy() instanceof BenevolentPlayer)
+                l_player.setStrategy(new BenevolentPlayer());
+            else if (l_pl.getD_playerBehaviorStrategy() instanceof CheaterPlayer)
+                l_player.setStrategy(new CheaterPlayer());
+
+            p_playersToCopy.add(l_player);
+        }
+        return p_playersToCopy;
     }
 }
 

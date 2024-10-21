@@ -27,7 +27,7 @@ public class AggressivePlayer extends PlayerBehaviorStrategy {
     public String createOrder(Player p_player, GameState p_gameState) {
         System.out.println("Creating order for : " + p_player.getPlayerName());
         String l_command;
-        if (!checkIfArmiesDepoyed(p_player)) {
+        if (!p_player.checkIfArmiesDepoyed()) {
             if(p_player.getD_noOfUnallocatedArmies()>0) {
                 l_command = createDeployOrder(p_player, p_gameState);
             }else{
@@ -86,7 +86,7 @@ public class AggressivePlayer extends PlayerBehaviorStrategy {
     @Override
     public String createDeployOrder(Player p_player, GameState p_gameState) {
         Random l_random = new Random();
-        Country l_strongestCountry = getStrongestCountry(p_player, p_gameState);
+        Country l_strongestCountry = p_player.getStrongestCountry(p_gameState, this);
         d_deployCountries.add(l_strongestCountry);
         int l_armiesToDeploy = 1;
         if (p_player.getD_noOfUnallocatedArmies()>1) {
@@ -169,7 +169,7 @@ public class AggressivePlayer extends PlayerBehaviorStrategy {
     @Override
     public String createCardOrder(Player p_player, GameState p_gameState, String p_cardName) {
         Random l_random = new Random();
-        Country l_StrongestSourceCountry = getStrongestCountry(p_player, d_gameState);
+        Country l_StrongestSourceCountry = p_player.getStrongestCountry(d_gameState, this);
 
         Country l_randomTargetCountry = p_gameState.getD_map()
                 .getCountry(l_StrongestSourceCountry.getD_adjacentCountryIds()
@@ -186,27 +186,9 @@ public class AggressivePlayer extends PlayerBehaviorStrategy {
                 return "airlift " + l_StrongestSourceCountry.getD_countryName() + " "
                         + getRandomCountry(p_player.getD_coutriesOwned()).getD_countryName() + " " + l_armiesToSend;
             case "negotiate":
-                return "negotiate" + " " + getRandomEnemyPlayer(p_player, p_gameState).getPlayerName();
+                return "negotiate" + " " + p_gameState.getRandomEnemyPlayer(p_player).getPlayerName();
         }
         return null;
-    }
-
-    /**
-     * Retrieves a random enemy player from the game state.
-     *
-     * @param p_player The player for which an enemy is to be selected.
-     * @param p_gameState The current game state.
-     * @return A randomly selected enemy player.
-     */
-    private Player getRandomEnemyPlayer(Player p_player, GameState p_gameState) {
-        ArrayList<Player> l_playerList = new ArrayList<Player>();
-        Random l_random = new Random();
-
-        for (Player l_player : p_gameState.getD_players()) {
-            if (!l_player.equals(p_player))
-                l_playerList.add(p_player);
-        }
-        return l_playerList.get(l_random.nextInt(l_playerList.size()));
     }
 
     /**
@@ -217,19 +199,6 @@ public class AggressivePlayer extends PlayerBehaviorStrategy {
     @Override
     public String getPlayerBehavior() {
         return "Aggressive";
-    }
-
-    /**
-     * Finds the strongest country owned by the player.
-     *
-     * @param p_player The player for which the strongest country is to be found.
-     * @param p_gameState The current game state.
-     * @return The strongest country owned by the player.
-     */
-    public Country getStrongestCountry(Player p_player, GameState p_gameState) {
-        List<Country> l_countriesOwnedByPlayer = p_player.getD_coutriesOwned();
-        Country l_Country = calculateStrongestCountry(l_countriesOwnedByPlayer);
-        return l_Country;
     }
 
     /**
@@ -254,19 +223,6 @@ public class AggressivePlayer extends PlayerBehaviorStrategy {
         }
         return l_Country;
 
-    }
-
-    /**
-     * Checks if the player has deployed any armies.
-     *
-     * @param p_player The player to check.
-     * @return True if the player has deployed armies, otherwise false.
-     */
-    private Boolean checkIfArmiesDepoyed(Player p_player){
-        if(p_player.getD_coutriesOwned().stream().anyMatch(l_country -> l_country.getD_armies()>0)){
-            return true;
-        }
-        return false;
     }
 
 }

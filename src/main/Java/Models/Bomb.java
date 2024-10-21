@@ -48,7 +48,7 @@ public class Bomb implements Card, Serializable {
                             + l_targetCountry.getD_countryName() + " with armies :  " + l_noOfArmiesOnTargetCountry
                             + ". New armies: " + l_targetCountry.getD_armies(),
                     "default");
-            p_gameState.updateLog(orderExecutionLog(), "effect");
+            p_gameState.d_logEntryBuffer.updateLog(orderExecutionLog(), "effect");
         }
     }
 
@@ -77,13 +77,13 @@ public class Bomb implements Card, Serializable {
             this.setD_orderExecutionLog(this.currentOrder() + " is not executed since Target country : "
                     + this.d_targetCountryID + " given in bomb command is owned by the player : "
                     + d_playerInitiator.getPlayerName() + " VALIDATES:- You cannot bomb your own territory!", "error");
-            p_gameState.updateLog(orderExecutionLog(), "effect");
+            p_gameState.d_logEntryBuffer.updateLog(orderExecutionLog(), "effect");
             return false;
         }
 
         if(!d_playerInitiator.negotiationValidation(this.d_targetCountryID)){
             this.setD_orderExecutionLog(this.currentOrder() + " is not executed as "+ d_playerInitiator.getPlayerName()+ " has negotiation pact with the target country's player!", "error");
-            p_gameState.updateLog(orderExecutionLog(), "effect");
+            p_gameState.d_logEntryBuffer.updateLog(orderExecutionLog(), "effect");
             return false;
         }
         return true;

@@ -33,7 +33,7 @@ public class IssueOrderPhase extends Phase {
     @Override
     protected void performLoadGame(Command p_command, Player p_player) throws InvalidCommand, InvalidMap, IOException {
         printInvalidCommandInState();
-        askForOrder(p_player);
+        p_player.askForOrder(this);
     }
 
 
@@ -93,7 +93,7 @@ public class IssueOrderPhase extends Phase {
     protected void performShowMap(Command p_command, Player p_player) throws InvalidCommand, IOException, InvalidMap {
         MapView l_mapView = new MapView(d_gameState);
         l_mapView.showMap();
-        askForOrder(p_player);
+        p_player.askForOrder(this);
     }
 
     /**
@@ -106,7 +106,7 @@ public class IssueOrderPhase extends Phase {
     @Override
     protected void performAdvance(String p_command, Player p_player) throws IOException {
         p_player.createAdvanceOrder(p_command, d_gameState);
-        d_gameState.updateLog(p_player.getD_playerLog(), "effect");
+        d_gameState.d_logEntryBuffer.updateLog(p_player.getD_playerLog(), "effect");
 
     }
 
@@ -130,7 +130,7 @@ public class IssueOrderPhase extends Phase {
     @Override
     protected void performCreateDeploy(String p_command, Player p_player) throws IOException {
         p_player.createDeployOrder(p_command);
-        d_gameState.updateLog(p_player.getD_playerLog(), "effect");
+        d_gameState.d_logEntryBuffer.updateLog(p_player.getD_playerLog(), "effect");
 
     }
 
@@ -159,32 +159,13 @@ public class IssueOrderPhase extends Phase {
     }
 
     /**
-     * Asks for a command from the player.
-     *
-     * @param p_player The player for whom the command is requested.
-     * @throws InvalidCommand if the command is invalid.
-     * @throws IOException    if an I/O error occurs.
-     * @throws InvalidMap     if the map is invalid.
-     */
-    public void askForOrder(Player p_player) throws InvalidCommand, IOException, InvalidMap{
-
-        String l_commandEntered = p_player.getPlayerOrder(d_gameState);
-
-        if(l_commandEntered == null) return;
-
-        d_gameState.updateLog("(Player: "+p_player.getPlayerName()+") "+ l_commandEntered, "order");
-
-        handleCommand(l_commandEntered, p_player);
-    }
-
-    /**
      * {@inheritDoc}
      */
     @Override
     protected void performAssignCountries(Command p_command, Player p_player, boolean isTournamentMode, GameState p_gameState)
             throws InvalidCommand, IOException, InvalidMap {
         printInvalidCommandInState();
-        askForOrder(p_player);
+        p_player.askForOrder(this);
     }
 
     /**
@@ -193,7 +174,7 @@ public class IssueOrderPhase extends Phase {
     @Override
     protected void createPlayers(Command p_command, Player p_player) throws InvalidCommand, IOException, InvalidMap {
         printInvalidCommandInState();
-        askForOrder(p_player);
+        p_player.askForOrder(this);
     }
 
     /**
@@ -203,7 +184,7 @@ public class IssueOrderPhase extends Phase {
     protected void performEditNeighbour(Command p_command, Player p_player)
             throws InvalidCommand, InvalidMap, IOException {
         printInvalidCommandInState();
-        askForOrder(p_player);
+        p_player.askForOrder(this);
     }
 
     /**
@@ -213,7 +194,7 @@ public class IssueOrderPhase extends Phase {
     protected void performEditCountry(Command p_command, Player p_player)
             throws InvalidCommand, InvalidMap, IOException {
         printInvalidCommandInState();
-        askForOrder(p_player);
+        p_player.askForOrder(this);
     }
 
     /**
@@ -228,7 +209,7 @@ public class IssueOrderPhase extends Phase {
     @Override
     protected void performValidateMap(Command p_command, Player p_player) throws InvalidMap, InvalidCommand, IOException {
         printInvalidCommandInState();
-        askForOrder(p_player);
+        p_player.askForOrder(this);
     }
 
     /**
@@ -243,7 +224,7 @@ public class IssueOrderPhase extends Phase {
     @Override
     protected void performLoadMap(Command p_command, Player p_player) throws InvalidCommand, InvalidMap, IOException {
         printInvalidCommandInState();
-        askForOrder(p_player);
+        p_player.askForOrder(this);
     }
 
     /**
@@ -258,7 +239,7 @@ public class IssueOrderPhase extends Phase {
     @Override
     protected void performSaveMap(Command p_command, Player p_player) throws InvalidCommand, InvalidMap, IOException {
         printInvalidCommandInState();
-        askForOrder(p_player);
+        p_player.askForOrder(this);
     }
 
     /**
@@ -273,7 +254,7 @@ public class IssueOrderPhase extends Phase {
     @Override
     protected void performEditContinent(Command p_command, Player p_player) throws IOException, InvalidCommand, InvalidMap {
         printInvalidCommandInState();
-        askForOrder(p_player);
+        p_player.askForOrder(this);
     }
 
     /**
@@ -288,7 +269,7 @@ public class IssueOrderPhase extends Phase {
     @Override
     protected void performMapEdit(Command p_command, Player p_player) throws IOException, InvalidCommand, InvalidMap {
         printInvalidCommandInState();
-        askForOrder(p_player);
+        p_player.askForOrder(this);
     }
 
     /**

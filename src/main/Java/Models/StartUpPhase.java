@@ -467,7 +467,7 @@ public class StartUpPhase extends Phase{
             boolean l_parsingSuccessful = false;
             Thread.setDefaultUncaughtExceptionHandler(new ExceptionLogHandler(d_gameState));
             if (CommonUtil.isCollectionEmpty(l_operations_list)
-                    && !d_tournament.requiredTournamentArgPresent(l_operations_list, p_command)) {
+                    && !p_command.requiredTournamentArgPresent(l_operations_list)) {
                 throw new InvalidCommand(ApplicationConstants.INVALID_COMMAND_TOURNAMENT_MODE);
             } else {
                 for (Map<String, String> l_map : l_operations_list) {

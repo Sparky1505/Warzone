@@ -1,9 +1,13 @@
 package Models;
 
+import Services.PlayerService;
+import Utils.CommonUtil;
+
 import java.util.List;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * Represents the state of a game including the map, players, and unexecuted orders.
@@ -23,7 +27,7 @@ public class GameState implements Serializable{
     List<Order> d_unexecutedOrders;
 
     /** The buffer for logging game events. */
-    LogEntryBuffer d_logEntryBuffer = new LogEntryBuffer();
+    public LogEntryBuffer d_logEntryBuffer = new LogEntryBuffer();
 
     /** A flag indicating whether the load command has been executed. */
     Boolean d_loadCmd = false;
@@ -113,15 +117,6 @@ public class GameState implements Serializable{
     }
 
     /**
-     * Updates the log with a new message and its type.
-     * @param p_logMessage The log message to be added.
-     * @param p_logType    The type of the log message.
-     */
-    public void updateLog(String p_logMessage, String p_logType) {
-        d_logEntryBuffer.logEvent(p_logMessage, p_logType);
-    }
-
-    /**
      * Retrieves the most recent log message.
      * @return The most recent log message.
      */
@@ -208,4 +203,112 @@ public class GameState implements Serializable{
         return d_winner;
     }
 
+    /**
+     * Updates the continents of players involved in battle.
+     *
+     * @param p_playerOfSourceCountry The player of the source country.
+     * @param p_playerOfTargetCountry The player of the target country.
+     */
+    void updateContinents(Player p_playerOfSourceCountry, Player p_playerOfTargetCountry) {
+        System.out.println("Updating continents of players involved in battle...");
+        List<Player> l_playesList = new ArrayList<>();
+        p_playerOfSourceCountry.setD_continentsOwned(new ArrayList<>());
+        p_playerOfTargetCountry.setD_continentsOwned(new ArrayList<>());
+        l_playesList.add(p_playerOfSourceCountry);
+        l_playesList.add(p_playerOfTargetCountry);
+
+        PlayerService l_playerService = new PlayerService();
+        l_playerService.performContinentAssignment(l_playesList, getD_map().getD_continents());
+    }
+
+    /**
+     * Retrieves a random enemy player from the game state.
+     *
+     * @param p_player The player for which an enemy is to be selected.
+     * @return A randomly selected enemy player.
+     */
+    Player getRandomEnemyPlayer(Player p_player) {
+        ArrayList<Player> l_playerList = new ArrayList<Player>();
+        Random l_random = new Random();
+
+        for (Player l_player : getD_players()) {
+            if (!l_player.equals(p_player))
+                l_playerList.add(p_player);
+        }
+        return l_playerList.get(l_random.nextInt(l_playerList.size()));
+    }
+
+    /**
+     * Retrieves the owner of a given country.
+     *
+     * @param p_countryId The ID of the country.
+     * @return The player who owns the country.
+     */
+    Player getCountryOwner(Integer p_countryId){
+        List<Player> l_players = getD_players();
+        Player l_owner = null;
+
+        for(Player l_player: l_players){
+            List<Integer> l_countriesOwned = l_player.getCountryIDs();
+            if(l_countriesOwned.contains(p_countryId)){
+                l_owner = l_player;
+                break;
+            }
+        }
+
+        return l_owner;
+    }
+
+    /**
+     * Adds a neutral player to the game if it doesn't already exist.
+     */
+    void addNeutralPlayer() {
+        Player l_player = getD_players().stream()
+                .filter(l_pl -> l_pl.getPlayerName().equalsIgnoreCase("Neutral")).findFirst().orElse(null);
+        if (CommonUtil.isNull(l_player)) {
+            Player l_neutralPlayer = new Player("Neutral");
+            l_neutralPlayer.setStrategy(new HumanPlayer());
+            l_neutralPlayer.setD_moreOrders(false);
+            getD_players().add(l_neutralPlayer);
+        } else {
+            return;
+        }
+    }
+
+    /**
+     * Checks whether the game has ended by determining if any player has conquered all countries on the map.
+     * If a player has conquered all countries, sets the game winner and logs the end of the game.
+     *
+     * @param orderExecutionPhase@return True if the game has ended, false otherwise.
+     */
+    Boolean checkEndOftheGame(OrderExecutionPhase orderExecutionPhase) {
+        Integer l_totalCountries = getD_map().getD_countries().size();
+        orderExecutionPhase.d_playerService.updatePlayersInGame(this);
+        for (Player l_player : getD_players()) {
+            if (l_player.getD_coutriesOwned().size() == l_totalCountries) {
+                orderExecutionPhase.d_gameState.setD_winner(l_player);
+                orderExecutionPhase.d_gameEngine.setD_gameEngineLog("Player : " + l_player.getPlayerName()
+                        + " has won the Game by conquering all countries. Exiting the Game .....", "end");
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Chooses a random player to negotaiate.
+     *
+     * @param p_player player object
+     * @return player object
+     */
+    Player getRandomPlayer(Player p_player){
+        ArrayList<Player> l_playerList = new ArrayList<Player>();
+        Random l_random = new Random();
+
+        for(Player l_player : getD_players()){
+            if(!l_player.equals(p_player))
+                l_playerList.add(p_player);
+        }
+        return l_playerList.get(l_random.nextInt(l_playerList.size()));
+    }
 }

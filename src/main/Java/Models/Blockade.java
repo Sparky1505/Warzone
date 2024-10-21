@@ -56,7 +56,7 @@ public class Blockade implements Card, Serializable {
             this.setD_orderExecutionLog("\nPlayer : " + this.d_playerInitiator.getPlayerName()
                     + " is executing defensive blockade on Country :  " + l_targetCountryID.getD_countryName()
                     + " with armies :  " + l_targetCountryID.getD_armies(), "default");
-            p_gameState.updateLog(orderExecutionLog(), "effect");
+            p_gameState.d_logEntryBuffer.updateLog(orderExecutionLog(), "effect");
         }
     }
 
@@ -78,7 +78,7 @@ public class Blockade implements Card, Serializable {
                     + this.d_targetCountryID + " given in blockade command does not owned to the player : "
                     + d_playerInitiator.getPlayerName()
                     + " The card will have no affect and you don't get the card back.", "error");
-            p_gameState.updateLog(orderExecutionLog(), "effect");
+            p_gameState.d_logEntryBuffer.updateLog(orderExecutionLog(), "effect");
             return false;
         }
         return true;

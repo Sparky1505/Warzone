@@ -55,4 +55,14 @@ public class LogEntryBuffer extends Observable implements Serializable {
         setChanged();
         notifyObservers();
     }
+
+    /**
+     * Updates the log with a new message and its type.
+     *
+     * @param p_logMessage The log message to be added.
+     * @param p_logType    The type of the log message.
+     */
+    public void updateLog(String p_logMessage, String p_logType) {
+        logEvent(p_logMessage, p_logType);
+    }
 }

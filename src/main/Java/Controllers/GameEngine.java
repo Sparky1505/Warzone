@@ -129,7 +129,7 @@ public class GameEngine implements Serializable {
      * @param p_logType The type of the log message, indicating the context in which it was generated.
      */
     public void setD_gameEngineLog(String p_gameEngineLog, String p_logType) {
-        d_currentPhase.getD_gameState().updateLog(p_gameEngineLog, p_logType);
+        d_currentPhase.getD_gameState().d_logEntryBuffer.updateLog(p_gameEngineLog, p_logType);
         String l_consoleLogger = p_logType.toLowerCase().equals("phase")
                 ? "\n************ " + p_gameEngineLog + " ************\n"
                 : p_gameEngineLog;
@@ -145,7 +145,7 @@ public class GameEngine implements Serializable {
     public static void main(String[] p_args) {
         GameEngine l_game = new GameEngine();
 
-        l_game.getD_CurrentPhase().getD_gameState().updateLog("Initializing the Game ......" + System.lineSeparator(),
+        l_game.getD_CurrentPhase().getD_gameState().d_logEntryBuffer.updateLog("Initializing the Game ......" + System.lineSeparator(),
                 "start");
         l_game.setD_gameEngineLog("Game Startup Phase", "phase");
         l_game.getD_CurrentPhase().initPhase(d_isTournamentMode);
